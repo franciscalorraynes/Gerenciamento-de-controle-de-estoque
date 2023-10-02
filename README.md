@@ -1,4 +1,5 @@
 # Gerenciamento de controle de Estoque
+@About
 O Sistema possibilitará o gerenciamento do estoque, com as funções de:
 
   1. Cadastro;
