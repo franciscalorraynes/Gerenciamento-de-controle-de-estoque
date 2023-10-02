@@ -1,3 +1,4 @@
+package Codigo;
 public interface InterfaceProduto{
     public void cadastraProduto();
     public void imprime_lista();
