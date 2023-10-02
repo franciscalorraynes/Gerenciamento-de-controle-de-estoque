@@ -4,7 +4,7 @@ O Sistema possibilitará o gerenciamento do estoque, com as funções de:
   1. Cadastro;
   2. Listar todos os produtos já cadastrados no txt (por enquanto, depois irei atualizar para um banco de dados);
   3. Buscar os produtos no estoque pelo nome;
-  4. Excluir;
+  4. Excluir pelo código;
   5. Voltar a tela inicial do Sistema;
   6. Sair.
 
