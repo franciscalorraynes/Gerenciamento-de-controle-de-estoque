@@ -118,9 +118,8 @@ public class Produtos {
         salvarDadosEmTxt();
     }
 
-     private void salvarDadosEmTxt() {
+    private void salvarDadosEmTxt() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("dados_produto.txt", true))) {
-
             writer.write("Data do cadastro: " + dataDoCadastro + "\n");
             writer.write("Código do produto: " + codigoProduto + "\n");
             writer.write("Nome do Produto: " + nomeProduto + "\n");
@@ -129,12 +128,13 @@ public class Produtos {
             writer.write("Tipo do produto: " + tipoProduto + "\n");
             writer.write("Data de validade: " + validadeDoProduto + "\n");
             writer.write("------------------------------\n");
-
+    
             System.out.println("Dados do produto salvos em 'dados_produto.txt'.");
         } catch (IOException e) {
             System.err.println("Erro ao salvar os dados do produto em um arquivo.");
         }
     }
+    
     public static void imprimeListaProdutos(List<Produtos> listaProduto) {
         System.out.println("Imprimindo a Lista de Produtos do Estoque");
     
@@ -190,7 +190,43 @@ public static List<Produtos> lerListaProdutosDeTxt(String nomeArquivo) {
 
     return listaProdutos;
 }
+public static boolean excluirProdutoPorCodigo(List<Produtos> listaProdutos, int codigoProduto) {
+    boolean produtoExcluido = false;
+    
+    // Iterar pela lista e encontrar o produto a ser excluído
+    for (Produtos produto : listaProdutos) {
+        if (produto.getCodigoProduto() == codigoProduto) {
+            listaProdutos.remove(produto);
+            produtoExcluido = true;
+            break; // Para a iteração após encontrar o produto
+        }
+    }
 
+    if (produtoExcluido) {
+        // Atualizar o arquivo de texto com a lista de produtos atualizada
+        atualizarArquivoProdutos(listaProdutos);
+    }
+
+    return produtoExcluido; // Produto não encontrado
+}
+public static void atualizarArquivoProdutos(List<Produtos> listaProdutos) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("dados_produto.txt"))) {
+        for (Produtos produto : listaProdutos) {
+            writer.write("Data do cadastro: " + produto.getDataDoCadastro() + "\n");
+            writer.write("Código do produto: " + produto.getCodigoProduto() + "\n");
+            writer.write("Nome do Produto: " + produto.getNomeProduto() + "\n");
+            writer.write("Preço do produto: " + produto.getPrecoProduto() + "\n");
+            writer.write("Data de fabricação: " + produto.getDataFabricacao() + "\n");
+            writer.write("Tipo do produto: " + produto.getTipoProduto() + "\n");
+            writer.write("Data de validade: " + produto.getValidadeDoProduto() + "\n");
+            writer.write("------------------------------\n");
+        }
+
+        System.out.println("Dados do arquivo 'dados_produto.txt' atualizados após a exclusão.");
+    } catch (IOException e) {
+        System.err.println("Erro ao atualizar o arquivo de produtos: " + e.getMessage());
+    }
+}
 
 
 }

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
 
 public class Menu {
     public static void main(String[] args) {
@@ -34,6 +33,7 @@ public class Menu {
             switch (opcao) {
                 case 1:
                 while (true) {
+                    System.out.println("5. Voltar");
                     System.out.println("--------------------\n");
                     Produtos produto = new Produtos();
                     produto.cadastraProduto(entrada);
@@ -48,19 +48,31 @@ public class Menu {
                     opAnterior = opcao;
                     break;
                 case 2:
+                   System.out.println("5. Voltar");
                     List<Produtos> produtosDoArquivo = Produtos.lerListaProdutosDeTxt("dados_produto.txt");
                     Produtos.imprimeListaProdutos(produtosDoArquivo);
                     opAnterior = opcao;
                     break;
                 case 3:
-                    System.out.println("Excluir Produtos");
-                    // Implemente a funcionalidade de busca aqui, se necessário
+                   System.out.println("5. Voltar");
+                    System.out.println("Digite o nome do produto que deseja excluir:");
+                    int codigoProdutoExcluir = entrada.nextInt();
+                    boolean produtoExcluido = Produtos.excluirProdutoPorCodigo(listaProdutos, codigoProdutoExcluir);
+                    if (produtoExcluido) {
+                         System.out.println("Produto \"" + codigoProdutoExcluir + "\" excluído com sucesso!");
+                    }else{
+                        System.out.println("Produto \"" + codigoProdutoExcluir + "\" não encontrado na lista.");
+                    }
+                    opAnterior = opcao;
+
                     break;
                 case 4:
+                   System.out.println("5. Voltar");
                     System.out.println("Buscar Produtos");
                     // Implemente a funcionalidade de voltar aqui, se necessário
                     break;
                 case 5:
+                
                     if (opAnterior == 0) {
                         System.out.println("Nenhuma opção anterior para voltar.");
                     } else {
