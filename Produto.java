@@ -18,6 +18,7 @@ public class Produto {
     }
 
     public void cadastraProduto(){
+        //
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite o Código do produto: ");
